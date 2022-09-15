@@ -15,7 +15,7 @@ body {
   margin: auto;
 }
 .main-container__background-section {
-  background-image: url(/images/bg-main-mobile.png);
+  background-image: url("./images/bg-main-mobile.png");
   background-repeat: no-repeat;
   height: 240px;
   position: relative;
@@ -29,7 +29,7 @@ body {
     display: flex;
   }
   .main-container__background-section {
-    background-image: url(/images/bg-main-desktop.png);
+    background-image: url("./images/bg-main-desktop.png");
     width: 900px;
     height: 900px;
   }
