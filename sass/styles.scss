@@ -9,7 +9,7 @@
     margin: auto;
     &__background-section{
     // hacemos uso del nesting para aplicar reglas dentro de otras
-        background-image: url(../images/bg-main-mobile.png);
+        background-image: url(./images/bg-main-mobile.png);
         background-repeat: no-repeat;
         height: 240px;  
         position: relative;
@@ -21,7 +21,7 @@
         width: 1440px;  
         display: flex;
         &__background-section{
-            background-image: url(../images/bg-main-desktop.png);
+            background-image: url(./images/bg-main-desktop.png);
             width: 900px;
             height: 900px;
         }
