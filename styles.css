@@ -40,7 +40,7 @@ body {
   height: 160px;
   color: hsl(0deg, 0%, 100%);
   padding: 20px;
-  background-image: url("../images/bg-card-front.png");
+  background-image: url("./images/bg-card-front.png");
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
@@ -95,7 +95,7 @@ body {
   height: 160px;
   color: hsl(0deg, 0%, 100%);
   padding: 20px;
-  background-image: url("../images/bg-card-back.png");
+  background-image: url("./images/bg-card-back.png");
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
