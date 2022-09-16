@@ -56,7 +56,6 @@ numberInput.addEventListener('input', e=>{
     if(numberInput.value == ''){
         numberCard.innerText = '1234 1234 1234 1234'
     } else {
-        
     }
 });
 
@@ -64,67 +63,99 @@ numberInput.addEventListener('input', e=>{
 
 monthInput.addEventListener('input', ()=>{
     monthCard.innerText = monthInput.value;
+    validateLetters(monthInput, monthErrorDiv);
 })
 
 // Ingreso dinamico del ano
 
 yearInput.addEventListener('input', ()=>{
     yearCard.innerText = yearInput.value;
+    validateLetters(yearInput, yearErrorDiv);
 })
 
 // Ingreso dinamico del cvc
 
 cvcInput.addEventListener('input', ()=>{
     cvcCard.innerText = cvcInput.value;
+    validateLetters(cvcInput, cvcErrorDiv);
 })
 
 // Boton confirm
-
 let confirmBtn = document.querySelector('.form__submit');
+let nameValidation = false;
+let numberValidation = false;
+let monthValidation = false;
+let yearValidation = false;
+let cvcValidation = false;
+
+// Secciones, forms y thanks
+
+let formSection = document.querySelector('.form');
+let thanksSection = document.querySelector('.thanks-section');
 
 confirmBtn.addEventListener('click', (e)=>{
     e.preventDefault(); 
+
     // Validar name
-    verifyIsFilled(nameInput, nameErrorDiv);
+    if(verifyIsFilled(nameInput, nameErrorDiv)){
+        nameValidation = true;
+    }else{
+        nameValidation = false;
+    }
+
     // Validar numero
     if (verifyIsFilled(numberInput, numberErrorDiv) == true){
         if(numberInput.value.length == 19){ 
-            showError(numberInput, numberErrorDiv, '', false)
+            showError(numberInput, numberErrorDiv, '', false);
+            numberValidation = true;
         }else{
-            showError(numberInput,numberErrorDiv, 'Wrong number')
+            showError(numberInput,numberErrorDiv, 'Wrong number');
+            numberValidation = false;
         }
     };
+
     //Validar mes
     if (verifyIsFilled(monthInput, monthErrorDiv) == true){
+       
         if(parseInt(monthInput.value) > 0 && parseInt(monthInput.value) < 13) {
             showError(monthInput, monthErrorDiv, '', false)
+            monthValidation = true;
         }else{
-            showError(monthInput, monthErrorDiv, 'Wrong month')
+            showError(monthInput, monthErrorDiv, 'Wrong month');
+            monthValidation = false;
         }
     }
 
     // Validar el ano
     if (verifyIsFilled(yearInput, yearErrorDiv) == true){
         if(parseInt(yearInput.value) > 22 && parseInt(yearInput.value) < 29){
-            showError(yearInput, yearErrorDiv, '', false)
+            showError(yearInput, yearErrorDiv, '', false);
+            yearValidation = true;
         }else{
-            showError(yearInput, yearErrorDiv, 'Wrong Year')
+            showError(yearInput, yearErrorDiv, 'Wrong Year');
+            yearValidation = false;
         }
     }
     // Validar CVC
+    
     if (verifyIsFilled(cvcInput, cvcErrorDiv) == true){
         if(parseInt(cvcInput.value.length) == 3){
-            showError(cvcInput, cvcErrorDiv,'',false)
+            showError(cvcInput, cvcErrorDiv,'',false);
+            cvcValidation = true;
         }else{
-            showError(cvcInput, cvcErrorDiv,'Wrong CVC')
+            showError(cvcInput, cvcErrorDiv,'Wrong CVC');
+            cvcValidation = false;
         }
     }
 
+    if(nameValidation == true && numberValidation == true && monthValidation == true && yearValidation == true && cvcValidation == true){
+        formSection.style.display = 'none';
+        thanksSection.style.display = 'block';
+    }
 })
 
 // Funciones
  
-
  function showError(divInput, divError, msgError, show = true){
      if(show){
          divError.innerText = msgError;
@@ -142,5 +173,14 @@ function verifyIsFilled(divInput, divError){
     } else {
         showError(divInput, divError, "Can't be empty");
         return false;
+    }
+}
+
+function validateLetters(input, divError){
+    let regExp = /[A-z]/g;
+    if(regExp.test(input.value)){
+        showError(input, divError, 'Wrong format, only numbers');
+    }else{
+        showError(input, divError, '', false);
     }
 }
